@@ -1,0 +1,41 @@
+.nav-link{
+    font-size: 30px;
+    font-weight: bolder;
+    color: black;
+    
+}
+
+
+.navbar{
+    background-color: cadetblue;
+    margin: 0;
+}
+
+.SectionLight{
+    text-align: center;
+}
+
+.heading-subheading{
+    background-color:white;
+}
+
+.footerSection{
+    margin-top: 20px;
+}
+
+.carousel-item
+{
+    height: 50x;
+    width: 100x;
+}
+
+.social-wrapper{
+    padding:15px;
+}
+.social-wrapper a{
+    padding: 20px;
+}
+
+.footer{
+    background-color:rgb(202, 241, 60);
+}

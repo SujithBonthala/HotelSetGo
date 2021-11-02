@@ -1,0 +1,50 @@
+.menu {
+  margin-top: 10px 0;
+  background-color: rgba(0, 0, 0, 0.726);
+  display: block;
+  height: 85px;
+}
+#b1 {
+  margin-left: 60px;
+  margin-top: 20px;
+  font-size: 30;
+  background-color: rgb(47, 255, 47);
+  color: white;
+  width: 100px;
+}
+#i1 {
+  margin-right: 300px;
+  margin-left: 310px;
+  margin-top: 20px;
+  width: 300px;
+  height: 35px;
+  font-size: 20;
+}
+#b2 {
+  margin-right: 60px;
+  margin-top: 20px;
+  font-size: 30;
+  background-color: rgb(47, 255, 47);
+  color: white;
+  width: 120px;
+}
+
+.Image-slide{
+  margin-top: 40px;
+  margin-bottom: 10px;
+}
+
+.footerSection{
+  margin-top: 20px;
+}
+
+.social-wrapper{
+  padding:15px;
+}
+.social-wrapper a{
+  padding: 20px;
+}
+
+.footer{
+  background-color:lightgreen
+}
