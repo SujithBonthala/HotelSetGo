@@ -10,7 +10,7 @@ function App() {
   return (
     <Router>
       <Switch>
-        <Route exact path="/first">
+        <Route exact path="/">
         <Firstpage />
         </Route>
         <Route exact path="/aboutus">
