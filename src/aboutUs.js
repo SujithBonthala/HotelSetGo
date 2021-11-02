@@ -9,7 +9,7 @@ function Aboutus(){
         <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Modi eligendi voluptatem laboriosam temporibus voluptates vero iure impedit in sapiente rem tempore, nihil velit quis, sed magni vitae autem quibusdam veritatis!</p>
     </div>
     <div className="go-back">
-    <a href="/first" className="btn">Go Back</a>
+    <a href="/" className="btn">Go Back</a>
     </div>
     </div>
     )
