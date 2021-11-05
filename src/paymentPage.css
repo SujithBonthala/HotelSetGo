@@ -1,0 +1,77 @@
+.top{
+    height: 60px;
+    width: 100%;
+    text-align: left;
+    justify-content: center;
+    background-color: rgb(0, 0, 0);
+    font-size: 40px;
+    font-weight: bold;
+    opacity: 0.8;
+}   
+.avatar{
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: inline;
+    float: left;
+}
+.top h1
+{
+    display: inline;
+    color: white;
+    padding-bottom: 20%;
+    font-size: 54;
+}
+#l1
+{
+    margin-left: 46.3%;
+    color: green;
+    font-size: 30;
+}
+#l2
+{
+    margin-left: 42.5%;
+    color: yellowgreen;
+    font-size: 22;
+}
+#d1
+{
+    display: block;
+}
+#u1
+{
+    margin-left: 38%;
+    color: rgb(111, 155, 22);
+}
+#d2
+{
+    display: block;
+    position: absolute;
+    top: 55%;
+    left: 42%;
+    box-sizing: border-box;
+}
+#l3
+{
+    color: steelblue;
+    font-size: 30;
+}
+.i1
+{
+    margin-left: 50px;
+}
+.i2
+{
+    color: darkblue;
+}
+#s1
+{
+    margin-left: 25px;
+    font-size: 16;
+    width: 150px;
+    color: darkorange;
+    background-color: honeydew;
+    box-sizing: border-box;
+    position: absolute;
+    border-radius: 5%;
+}
