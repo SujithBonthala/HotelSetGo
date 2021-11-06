@@ -1,13 +1,17 @@
 import logo from "./logo512.png";
 import "./styleHome.css";
+import hotellogo from './hotelLogo.jpg'
+import img1 from './hotelhomeimg2.jpg'
+import img2 from './hotelhomeimg1.jpg'
+import img3 from './homehotelimg3.jpg'
 
-function Homehotel() {
+function Homehotel({setLoginUser}) {
   return (
-    <div>
+    <div className="fullPage">
       <div className="navigation-bar">
         <nav className="navbar navbar-expand-lg">
           <div className="row">
-            <div className="col-lg-10 col-sm-12">
+            <div className="col-md-5 col-sm-12">
               <ul className="navbar-nav">
                 <li className="nav-item">
                   <a className="nav-link" href="https://www.google.com">
@@ -21,8 +25,11 @@ function Homehotel() {
                 </li>
               </ul>
             </div>
-            <div className="col-lg-2 col-sm-12">
-              <img className="img-fluid" src="" alt="hotel-logo" />
+            <div className="col-md-2 col-sm-12">
+              <img className="img-fluid" src={hotellogo} alt="hotel-logo" />
+            </div>
+            <div className="col-md-5 col-sm-12">
+              <button id="b2" onClick={()=>{setLoginUser({})}}>Sign Out</button>
             </div>
           </div>
         </nav>
@@ -34,7 +41,7 @@ function Homehotel() {
         </div>
         <div className="row">
           <div className="col"></div>
-          <div className="col-sm-12 col-md-6">
+          <div className="col-sm-12 col-md-4">
             <div
               id="carouselExampleControls"
               className="carousel slide"
@@ -44,21 +51,21 @@ function Homehotel() {
                 <div className="carousel-item active">
                   <img
                     className="d-block w-100 bg-dark"
-                    src={logo}
+                    src={img1}
                     alt="First slide"
                   />
                 </div>
                 <div className="carousel-item">
                   <img
                     className="d-block w-100 bg-dark"
-                    src={logo}
+                    src={img2}
                     alt="Second slide"
                   />
                 </div>
                 <div className="carousel-item">
                   <img
                     className="d-block w-100 bg-dark"
-                    src={logo}
+                    src={img3}
                     alt="Third slide"
                   />
                 </div>
