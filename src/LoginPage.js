@@ -3,6 +3,7 @@ import "./LoginPage.css";
 import loginAvatar from "./login_avatar.png";
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
+import swal from 'sweetalert';
 
 import axios from "axios";
 
@@ -23,7 +24,7 @@ function Loginpage({ setLoginUser }) {
 
   const login = () => {
     axios.post("http://localhost:8000/loginpage", user).then((res) => {
-      alert(res.data.message);
+      swal(res.data.message);
       setLoginUser(res.data.user);
       history.push("/hotelhome");
     });

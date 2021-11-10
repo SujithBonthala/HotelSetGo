@@ -7,6 +7,8 @@ import Homehotel from "./homeHotel";
 import Loginpage from "./LoginPage";
 import Signup from "./signupPage";
 import { useState } from "react";
+import LodgingPage from "./lodgingPage";
+import Hotelseat from "./hotelseat";
 
 function App() {
   const [user, setLoginUser] = useState({});
@@ -32,10 +34,15 @@ function App() {
             <Loginpage setLoginUser={setLoginUser} />
           )}
         </Route>
+        <Route exact path="/lodgingPage">
+          <LodgingPage />
+        </Route>
+        <Route exact path="/hotelseat">
+          <Hotelseat />
+        </Route>
       </Switch>
     </Router>
   );
 }
 
 export default App;
-

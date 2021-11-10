@@ -2,6 +2,7 @@ import "./signup.css";
 import loginAvatar from "./login_avatar.png";
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
+import swal from 'sweetalert';
 
 import axios from "axios";
 
@@ -27,12 +28,12 @@ function Signup() {
     const { name, phone, username, password, repassword } = user;
     if (name && phone && username && password && (password == repassword)) {
       axios.post("http://localhost:8000/signuppage", user).then((res) => {
-        alert(res.data.message);
+        swal(res.data.message);
         history.push("/");
       });
     } 
     else {
-      alert("Invalid Input");
+      swal("Invalid Input");
     }
   };
 
@@ -96,4 +97,3 @@ function Signup() {
 }
 
 export default Signup;
-

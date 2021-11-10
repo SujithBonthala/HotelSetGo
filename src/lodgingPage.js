@@ -1,6 +1,6 @@
 import loginAvatar from "./login_avatar.png";
 import "./lodgingPage.css";
-//import { useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 const options=[
     {
         label: "King-Sized bedroom",
@@ -20,6 +20,7 @@ const options=[
     },
 ];
 function LodgingPage(){
+    const history = useHistory();
     return(
         <div>
             <div className="top">
@@ -30,22 +31,22 @@ function LodgingPage(){
             <div>
             <form action="POST" id='f1'>
                 <br/><br/><br/>
-                <label id='l1'>Lodging</label><br/><br/><br/><br/>
-                <label id='l2'>Check-In: </label>
+                <label id='l1'><b>Lodging</b></label><br/><br/><br/><br/>
+                <label id='l2'><b>Check-In: </b></label>
                 <input type="date" id='i1'/>
-                <label id='l3'>Check-Out: </label>
+                <label id='l3'><b>Check-Out: </b></label>
                 <input type="date" id='i2'/><br/><br/>
-                <label for="room" id='l4'>Room Type: </label>
+                <label for="room" id='l4'><b>Room Type: </b></label>
                 <select id='s1' name="room">
                     {options.map((option) => (
                         <option value={option.value}>{option.label}</option>))}
                 </select>
-                <label for="num" id='l5'>No. of rooms: </label>
+                <label for="num" id='l5'><b>No. of rooms: </b></label>
                 <input type="number" name="num" id='i3'/><br/><br/>
-                <label for="cno" id='l6'>Contact No.: </label>
+                <label for="cno" id='l6'><b>Contact No.: </b></label>
                 <input type="number" name="cno" id='i4'/>
-                <label id='l7'>Total Price: </label><label id='l8'>Rs. </label><br/><br/><br/><br/>
-                <button value="booking" id='b1'>Confirm Booking</button>
+                <label id='l7'><b>Total Price: </b></label><label id='l8'><b>Rs. </b></label><br/><br/><br/><br/>
+                <button value="booking" id='b1'><b>Confirm Booking</b></button>
             </form>
             </div>
         </div>

@@ -1,7 +1,22 @@
+.fullPage{
+    margin:0;
+    padding:0;
+    background-image: url(hotelhome.jpg);
+    background-size:cover;
+    background-position:top;
+    font-family: sans-serif;
+    min-height: 820px;
+}
+
+
 .nav-link{
     font-size: 30px;
     font-weight: bolder;
     color: black;
+    background-color: rgb(47, 255, 47);
+    border: none;
+    border-radius: 5px;
+    margin-left: 8px;
     
 }
 
@@ -9,10 +24,22 @@
 .navbar{
     background-color: cadetblue;
     margin: 0;
+    padding: 15px;
 }
+
+
+#b2 {
+    font-size: 25px;
+    background-color: rgb(47, 255, 47);
+    color:black;
+    width: 150px;
+    float: right;
+    font-weight: bold;
+  }
 
 .SectionLight{
     text-align: center;
+    margin-bottom: 50px;
 }
 
 .heading-subheading{
@@ -34,8 +61,14 @@
 }
 .social-wrapper a{
     padding: 20px;
+    color: cornsilk;
 }
 
 .footer{
-    background-color:rgb(202, 241, 60);
+    
+    background-color:cadetblue;
+}
+
+.footerSection{
+    margin-top: 10px;
 }

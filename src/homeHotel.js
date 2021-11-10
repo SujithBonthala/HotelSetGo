@@ -4,8 +4,11 @@ import hotellogo from './hotelLogo.jpg'
 import img1 from './hotelhomeimg2.jpg'
 import img2 from './hotelhomeimg1.jpg'
 import img3 from './homehotelimg3.jpg'
+import { useHistory } from "react-router-dom";
 
 function Homehotel({setLoginUser}) {
+
+  const history = useHistory();
   return (
     <div className="fullPage">
       <div className="navigation-bar">
@@ -14,14 +17,10 @@ function Homehotel({setLoginUser}) {
             <div className="col-md-5 col-sm-12">
               <ul className="navbar-nav">
                 <li className="nav-item">
-                  <a className="nav-link" href="https://www.google.com">
-                    Lodging
-                  </a>
+                <button className="nav-link" onClick={()=>{history.push('/lodgingPage')}}>Lodging</button>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="https://www.google.com">
-                    Restaurant
-                  </a>
+                <button className="nav-link" onClick={()=>{history.push('/hotelseat')}}>Restaurant</button>
                 </li>
               </ul>
             </div>
