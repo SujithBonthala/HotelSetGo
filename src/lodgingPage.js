@@ -22,7 +22,7 @@ const options=[
 function LodgingPage(){
     const history = useHistory();
     return(
-        <div>
+        <div className="full">
             <div className="top">
                 <h1>HotelSetGo</h1>
                 <img src={loginAvatar} alt="avatar" className="avatar" />
