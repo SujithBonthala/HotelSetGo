@@ -19,14 +19,8 @@ mongoose.connect(
   }
 );
 
-const userSchema = new mongoose.Schema({
-  name: String,
-  phone: String,
-  username: String,
-  password: String,
-});
-
-const User = new mongoose.model("User", userSchema);
+const User = require("./models/user");
+const Room = require("./models/room");
 
 app.post("/loginpage", function (req, res) {
   const { username, password } = req.body;
@@ -47,7 +41,7 @@ app.post("/signuppage", function (req, res) {
   const { name, phone, username, password } = req.body;
   User.findOne({ username: username }, (err, user) => {
     if (user) {
-      res.send({message:"Username already exists"});
+      res.send({ message: "Username already exists" });
     } else {
       const user = new User({
         name: name,
@@ -57,13 +51,66 @@ app.post("/signuppage", function (req, res) {
       });
       user.save((err) => {
         if (err) {
-          res.send({message:"Error Occured"});
+          res.send({ message: "Error Occured" });
         } else {
           res.send({ message: "Account Created Successfully,Please Login.." });
         }
       });
     }
   });
+});
+
+app.post("/lodgingPage", function (req, res) {
+  const { from, to, roomtype, number } = req.body;
+  console.log(req.body);
+  Room.find(
+    {
+      type: roomtype,
+      max_occupancy: { $elemMatch: { number: number  }, }
+      reserved: {
+        $not: {
+          $elemMatch: {
+            from: { $lte: to.substring(0, 10) },
+            to: { $gte: from.substring(0, 10) },
+          },
+        },
+      },
+    },
+    function (error, rooms) {
+      if (error) {
+        res.send({
+          message: error,
+        });
+      } else {
+        console.log(rooms);
+        res.json({
+          message: "Room Satisfying Your Condition is found!!",
+          room: rooms,
+        });
+      }
+    }
+  );
+});
+
+app.put("/lodgingPage", function (req, res) {
+  console.log(req.body);
+  Room.findByIdAndUpdate(
+    req.body.id,
+    {
+      $push: { reserved: { from: req.body.from, to: req.body.to } },
+    },
+    {
+      safe: true,
+      new: true,
+    },
+    function (err, room) {
+      if (err) {
+        res.send({ message: err });
+      } else {
+        res.send({ message: "Room Booked Successfully!!" });
+      }
+    }
+  );
 });
 
 app.listen(8000, function () {
