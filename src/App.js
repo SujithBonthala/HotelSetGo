@@ -9,9 +9,11 @@ import Signup from "./signupPage";
 import { useState } from "react";
 import LodgingPage from "./lodgingPage";
 import Hotelseat from "./hotelseat";
+import Paymentpage from "./paymentPage";
 
 function App() {
   const [user, setLoginUser] = useState({});
+  const[price,setPrice]=useState(0);
   return (
     <Router>
       <Switch>
@@ -35,10 +37,13 @@ function App() {
           )}
         </Route>
         <Route exact path="/lodgingPage">
-          <LodgingPage />
+          <LodgingPage setPrice={setPrice}/>
         </Route>
         <Route exact path="/hotelseat">
           <Hotelseat />
+        </Route>
+        <Route exact path="/paymentpage">
+          <Paymentpage price={price}/>
         </Route>
       </Switch>
     </Router>

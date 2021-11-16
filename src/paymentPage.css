@@ -1,4 +1,15 @@
-.top{
+.paymentbody {
+    margin: 0;
+    padding: 0;
+    background-image: url(payment2.jpg);
+    background-size: cover;
+    background-position: top;
+    font-family: sans-serif;
+    min-height: 820px;
+}
+
+
+.top5{
     height: 60px;
     width: 100%;
     text-align: left;
@@ -8,31 +19,33 @@
     font-weight: bold;
     opacity: 0.8;
 }   
-.avatar{
+.avatar5{
     width: 60px;
     height: 60px;
     border-radius: 50%;
     display: inline;
     float: left;
 }
-.top h1
+.top5 h1
 {
     display: inline;
     color: white;
     padding-bottom: 20%;
     font-size: 54;
 }
-#l1
+#L1
 {
-    margin-left: 46.3%;
-    color: green;
-    font-size: 30;
+    margin-left: 45.3%;
+    color:black;
+    font-size:35px;
+    font-weight: bolder;
 }
-#l2
+#L2
 {
     margin-left: 42.5%;
-    color: yellowgreen;
-    font-size: 22;
+    color:black;
+    font-size: 25px;
+    font-weight: bolder;
 }
 #d1
 {
@@ -51,27 +64,40 @@
     left: 42%;
     box-sizing: border-box;
 }
-#l3
+#L3
 {
-    color: steelblue;
-    font-size: 30;
+    color:black;
+    font-size: 30px;
+    font-weight: bolder;
 }
 .i1
 {
-    margin-left: 50px;
+    margin-left: 10px;
+    width: 25px;
+    height: 15px;
+    
+    
 }
 .i2
 {
-    color: darkblue;
+    color: black;
+    font-size: 21px;
+    font-weight: bold;
+    background-color: azure;
+    width: 200px;
 }
-#s1
+#S1
 {
     margin-left: 25px;
-    font-size: 16;
-    width: 150px;
-    color: darkorange;
+    font-size: 20px;
+    width: 200px;
+    color:black;
+    font-weight: bold;
     background-color: honeydew;
     box-sizing: border-box;
     position: absolute;
-    border-radius: 5%;
+    border-radius: 6%;
+}
+#S1:hover{
+    background-color: aqua;
 }

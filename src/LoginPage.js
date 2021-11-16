@@ -24,7 +24,7 @@ function Loginpage({ setLoginUser }) {
 
   const login = () => {
     axios.post("http://localhost:8000/loginpage", user).then((res) => {
-      swal(res.data.message);
+      swal(res.data.message+"!!");
       setLoginUser(res.data.user);
       history.push("/hotelhome");
     });
