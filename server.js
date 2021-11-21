@@ -66,7 +66,7 @@ app.post("/lodgingPage", function (req, res) {
   Room.find(
     {
       type: roomtype,
-      max_occupancy: { $elemMatch: { number: number  }, }
+      //max_occupancy: { $elemMatch: { number: number  }, },
       reserved: {
         $not: {
           $elemMatch: {
@@ -82,7 +82,7 @@ app.post("/lodgingPage", function (req, res) {
           message: error,
         });
       } else {
-        console.log(rooms);
+        //console.log(rooms);
         res.json({
           message: "Room Satisfying Your Condition is found!!",
           room: rooms,
@@ -107,6 +107,7 @@ app.put("/lodgingPage", function (req, res) {
       if (err) {
         res.send({ message: err });
       } else {
+        console.log(room)
         res.send({ message: "Room Booked Successfully!!" });
       }
     }
