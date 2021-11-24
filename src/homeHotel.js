@@ -1,4 +1,4 @@
-import logo from "./logo512.png";
+//import logo from "./logo512.png";
 import "./styleHome.css";
 import hotellogo from './hotelLogo.jpg'
 import img1 from './hotelhomeimg2.jpg'
