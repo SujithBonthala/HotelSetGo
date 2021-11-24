@@ -21,6 +21,7 @@ mongoose.connect(
 
 const User = require("./models/user");
 const Room = require("./models/room");
+const Hotel = require("./models/hotelseats");
 
 app.post("/loginpage", function (req, res) {
   const { username, password } = req.body;
@@ -93,8 +94,121 @@ app.post("/lodgingPage", function (req, res) {
 });
 
 app.put("/lodgingPage", function (req, res) {
+    console.log(req.body);
+    Room.findByIdAndUpdate(
+      req.body.id,
+      {
+        $push: { reserved: { from: req.body.from, to: req.body.to } },
+      },
+      {
+        safe: true,
+        new: true,
+      },
+      function (err, room) {
+        if (err) {
+          res.send({ message: err });
+        } else {
+          console.log(room)
+          res.send({ message: "Room Booked Successfully!!" });
+        }
+      }
+    );
+});
+
+function hourplus(hour)
+{
+  if(hour=="01")
+  {
+    return "02";
+  }
+  else if(hour=="02")
+  {
+    return "03";
+  }
+  else if(hour=="03")
+  {
+    return "04";
+  }
+  else if(hour=="07")
+  {
+    return "08";
+  }
+  else if(hour=="08")
+  {
+    return "09";
+  }
+  else if(hour=="09")
+  {
+    return "10";
+  }
+  else if(hour=="10")
+  {
+    return "11";
+  }
+}
+
+app.post("/hotelseat", function (req, res) {
+    const {guests,date,hour,minute,ampm,requests} = req.body;
+    console.log(req.body);
+    var seater;
+    if(guests<=2 && guests>=1)
+    {
+      seater=2;
+    }
+    else if(guests>2 && guests<=4)
+    {
+      seater=4;
+    }
+    else if(guests>4 && guests<=6)
+    {
+      seater=6;
+    }
+    var to;
+    var from = ampm + hour + minute;
+    if(ampm=="AM" && minute=="00")
+    {
+      to = ampm + hour + "30";
+    }
+    else if(ampm=="AM")
+    {
+      to = ampm + hourplus(hour) + "00";
+    }
+    else
+    {
+      to = ampm + hourplus(hour) + minute;
+    }
+    Hotel.findOne(
+      {
+        max_occupancy: { $elemMatch: { number: seater }, },
+        reserved: {
+          $not: {
+            $elemMatch: {
+              from: { $lte: to },
+              to: { $gte: from },
+            },
+          },
+        },
+      },
+      function (error, seats) {
+        if (error) {
+          res.send({
+            message: error,
+          });
+        } else {
+          res.json({
+            message: "Table satisfying your condition is found!!",
+            seat: seats,
+            from: from,
+            to: to
+          });
+        }
+      }
+    );
+});
+
+app.put("/hotelseat", function (req, res) {
   console.log(req.body);
-  Room.findByIdAndUpdate(
+  Hotel.findByIdAndUpdate(
     req.body.id,
     {
       $push: { reserved: { from: req.body.from, to: req.body.to } },
@@ -103,17 +217,17 @@ app.put("/lodgingPage", function (req, res) {
       safe: true,
       new: true,
     },
-    function (err, room) {
+    function (err, seat) {
       if (err) {
         res.send({ message: err });
       } else {
-        console.log(room)
-        res.send({ message: "Room Booked Successfully!!" });
+        console.log(seat)
+        res.send({ message: "Restaurant Table Reserved Successfully!!" });
       }
     }
   );
 });
 
 app.listen(8000, function () {
-  console.log("API running on port 8000!!");
+    console.log("API running on port 8000!!");
 });
