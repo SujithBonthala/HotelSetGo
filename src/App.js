@@ -10,10 +10,12 @@ import { useState } from "react";
 import LodgingPage from "./lodgingPage";
 import Hotelseat from "./hotelseat";
 import Paymentpage from "./paymentPage";
+import Paymentpage2 from "./paymentPage2";
 
 function App() {
   const [user, setLoginUser] = useState({});
   const [payment, setPayment] = useState({ price: 0, num: 0, type: "" });
+  const [payment2, setPayment2] = useState({ price: 0, num: 0, type: "" });
   return (
     <Router>
       <Switch>
@@ -45,7 +47,7 @@ function App() {
         </Route>
         <Route exact path="/hotelseat">
           {user && user._id ? (
-            <Hotelseat />
+            <Hotelseat setPayment2={setPayment2} />
           ) : (
             <Loginpage setLoginUser={setLoginUser} />
           )}
@@ -53,6 +55,13 @@ function App() {
         <Route exact path="/paymentpage">
           {user && user._id ? (
             <Paymentpage obj={payment} />
+          ) : (
+            <Loginpage setLoginUser={setLoginUser} />
+          )}
+        </Route>
+        <Route exact path="/paymentpage2">
+          {user && user._id ? (
+            <Paymentpage2 obj={payment2} />
           ) : (
             <Loginpage setLoginUser={setLoginUser} />
           )}

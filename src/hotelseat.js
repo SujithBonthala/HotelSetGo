@@ -2,6 +2,8 @@ import loginAvatar from "./login_avatar.png";
 import './hotelseat.css';
 import { useHistory } from "react-router-dom";
 import { useState } from "react";
+import axios from "axios";
+import swal from "sweetalert";
 
 const options1=[
     {
@@ -10,51 +12,51 @@ const options1=[
     },
     {
         label: "01",
-        value: "one",
+        value: "01",
     },
     {
         label: "02",
-        value: "two",
+        value: "02",
     },
     {
         label: "03",
-        value: "three",
+        value: "03",
     },
     {
         label: "04",
-        value: "four",
+        value: "04",
     },
     {
         label: "05",
-        value: "five",
+        value: "05",
     },
     {
         label: "06",
-        value: "six",
+        value: "06",
     },
     {
         label: "07",
-        value: "seven",
+        value: "07",
     },
     {
         label: "08",
-        value: "eight",
+        value: "08",
     },
     {
         label: "09",
-        value: "nine",
+        value: "09",
     },
     {
         label: "10",
-        value: "ten",
+        value: "10",
     },
     {
         label: "11",
-        value: "eleven",
+        value: "11",
     },
     {
         label: "12",
-        value: "twelve",
+        value: "12",
     },
 ];
 const options2=[
@@ -64,11 +66,11 @@ const options2=[
     },
     {
         label: "00",
-        value: "zero",
+        value: "00",
     },
     {
         label: "30",
-        value: "thirty",
+        value: "30",
     },
 ];
 const options3=[
@@ -78,16 +80,18 @@ const options3=[
     },
     {
         label: "AM",
-        value: "am",
+        value: "AM",
     },
     {
         label: "PM",
-        value: "pm",
+        value: "PM",
     },
 ];
-var reserved_seats=[]
 
-function Hotelseat({ setPayment }){
+
+function Hotelseat({ setPayment2 }){
+    //var reserved_seats=[];
+    
 
     const history = useHistory();
     const [hotel, setHotel] = useState({
@@ -100,18 +104,20 @@ function Hotelseat({ setPayment }){
         requests:"",
     
     });
+    const [reserved_seats,setSeat]=useState({id:"", from: "", to: ""})
 
     const handleChange = (e) => {
         const { name, value } = e.target;
         setHotel({
-            ...room,
+            ...hotel,
             [name]: value,
         });
     };
 
     var d = new Date();
     var d1 = new Date();
-    d.setDate(d.getDate() + 30);
+    d.setMonth(d.getMonth() + 2);
+    d1.setMonth(d1.getMonth() + 1);
     var date1 = d.getFullYear() + "-" + d.getMonth() + "-" + d.getDate();
     var date2 = d1.getFullYear() + "-" + d1.getMonth() + "-" + d1.getDate();
     var seats = [];
@@ -121,8 +127,8 @@ function Hotelseat({ setPayment }){
         const {guests,date,hour,minute,ampm,requests} = hotel;
         var date3 = new Date(date);
         date3.setMonth(date3.getMonth() - 1);
-        var date_valid = new Date(date1);
-        var date_today = new Date(date2);
+        var date_valid = d.getFullYear() + "-" + d.getMonth() + "-" + d.getDate();
+        var date_today = d1.getFullYear() + "-" + d1.getMonth() + "-" + d1.getDate();
         var time = new String();
         var time1;
         var time_array = new Date().toLocaleTimeString('en-US', { hour: 'numeric', hour12: true, minute: 'numeric' }).split(":");
@@ -144,15 +150,16 @@ function Hotelseat({ setPayment }){
         var bool1 = hour && minute && ampm && ((ampm=="PM" && time3=="AM")||(ampm=="AM" && time3=="AM" && (time1<hour)||(time1==hour && time2<=minute))
                                                 ||(ampm=="PM" && time3=="PM" && (time1<hour)||(time1==hour && time2<=minute))) && (!(ampm=="AM" && time3=="PM"));
         var bool2 = hour && minute && ampm && (ampm=="PM" && ((hour>="01"&&hour<="03")||(hour>="08"&&hour<="10")))||(hour=="AM"&&hour>="07"&&hour<="10");
-        if ((date_today==date2 && bool1)||(date_today<date2 && date2<=date_valid && bool2) && guests<=6 && guests>0) {
+        alert(date+"  "+date_today+"  "+date_valid);
+        if ((date_today==date && bool1)||(date_today<date && date<=date_valid && bool2) && guests<=6 && guests>0) {
             axios.post("http://localhost:8000/hotelseat", hotel)
                 .then((res) => {
                     console.log(res.data);
                     seats = res.data.seat;
                     swal(res.data.message);
-                    reserved_seats.push({ id: seats._id, from: res.data.from, to: res.data.to });
+                    setSeat({ id: seats._id, from: res.data.from, to: res.data.to });
                     price = seats.price*guests;
-                    document.getElementById("l8").innerHTML = "Rs." + " " + price;
+                    //document.getElementById("l8").innerHTML = "Rs." + " " + price;
                     var seater;
                     if(guests<=2)
                     {
@@ -166,7 +173,7 @@ function Hotelseat({ setPayment }){
                     {
                         seater="Six-Seater";
                     }
-                    setPayment({price:price,num:guests,type:seater});
+                    setPayment2({price:price,num:guests,type:seater});
                     console.log(reserved_seats);
                     // else {
                     //     swal("Maximum table seating capacity of our hotel is 6!");
@@ -183,15 +190,15 @@ function Hotelseat({ setPayment }){
 
     const Confirm = () => {
         console.log(reserved_seats);
-        if (reserved_seats.length>0) {
+        if (reserved_seats) {
             axios
-            .put("http://localhost:8000/hotelseat", reserved_rooms[0])
+            .put("http://localhost:8000/hotelseat", reserved_seats)
             .then((res) => {
                 swal(res.data.message);
         });
         seats = [];
-        reserved_seats = [];
-        history.push("/paymentpage");
+        setSeat({id:"",from:"",to:""})
+        history.push("/paymentpage2");
         } 
         else {
             swal("Booking cannot be made as there are no tables available!");
