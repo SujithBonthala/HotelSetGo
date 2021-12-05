@@ -1,7 +1,7 @@
 .seatbody {
     margin: 0;
     padding: 0;
-    background-image: url(hotelseat.jpg);
+    background-image: url("C:/Users/Samarth Bonthala/Desktop/WebTech Mini_Project/hotel-set-go/src/hotelseat.jpg");
     background-size: cover;
     background-position: top;
     font-family: sans-serif;
@@ -35,13 +35,28 @@
     font-size: 35px;
 }
 
+.box1{
+    width: 600px;
+    height: 400px;
+    background: #000000;
+    color: #fff;
+    top: 62%;
+    left: 25%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    box-sizing: border-box;
+    opacity: 80%;
+    padding: 30px 30px;
+    border-radius: 5%;
+}
+
 .box2{
     width: 600px;
     height: 550px;
     background: #000000;
     color: #fff;
     top: 60%;
-    left: 50%;
+    left: 75%;
     position: absolute;
     transform: translate(-50%, -50%);
     box-sizing: border-box;
