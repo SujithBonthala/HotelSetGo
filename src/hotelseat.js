@@ -92,7 +92,6 @@ const options3=[
 function Hotelseat({ setPayment2 }){
     //var reserved_seats=[];
     
-
     const history = useHistory();
     const [hotel, setHotel] = useState({
 
@@ -209,40 +208,49 @@ function Hotelseat({ setPayment2 }){
         <div className="seatbody">
             <div className="top3">
                 <h1>HotelSetGo</h1>
-                <img src={loginAvatar} alt="avatar" className="avatar3"/>
+                <img src='hotel-set-go/src/login_avatar.png' alt="avatar" className="avatar3"/>
+            </div>
+            <div className="box1">
+                <br/><br/>
+                <h3>Points to note before proceeding for Restaurant Reservation</h3><br/><br/>
+                <ul>
+                    <li>
+                        Breakfast Timings - 7 AM to 10 AM
+                    </li><br/>
+                    <li>
+                        Lunch Timings - 1 PM to 3 PM
+                    </li><br/>
+                    <li>
+                        Dinner Timings - 8 PM to 10 PM
+                    </li><br/>
+                    <li>
+                        Reservations start only 30 days before the day the booking has to be done on
+                    </li>
+                </ul>
             </div>
             <div className="box2">
                 <h1>Restaurant Reservation</h1>
                 <form action="login.html">
-
                     Number of Guests: 
-                    <input type="text" name="guests" placeholder="Enter number of guests" value={hotel.guests} onChange={handleChange}/><br/><br/>
-
-                    Date: <input type="date" name="date" placeholder = "Date" value={hotel.date} onChange={handleChange}/>
-
-                    Arrival Time:
-                    <select id='s1' name="hour" value={hotel.hour} onChange={handleChange}>
+                    <input type="text" name="guests" placeholder="Enter number of guests"/><br/><br/>
+                    Date: <input type="date" name="date" placeholder = "Date"/>
+                    Arrival Time: 
+                    <select id='s1' name="hour">
                         {options1.map((option) => (
                         <option value={option.value}>{option.label}</option>))}
-                    </select>:
-
-                     <select id='s2' name="minute" value={hotel.minute} onChange={handleChange}>
+                    </select>: 
+                     <select id='s2' name="minute">
                         {options2.map((option) => (
                         <option value={option.value}>{option.label}</option>))}
-                    </select>
-
-                     <select id='s3' name="ampm" value={hotel.ampm} onChange={handleChange}>
+                    </select>  
+                     <select id='s3' name="ampm">
                         {options3.map((option) => (
                         <option value={option.value}>{option.label}</option>))}
                     </select><br/><br/>
-
                     Any Special Requests? <input type="text" name="requests" placeholder = "Special Requests"/><br/>
-
                     <input type="button" value="Back" onClick={()=>{history.push('/hotelhome')}}/>
-
-                    <input type="button" value="Check Availability" onClick={Search} />
-
-                    <input type="button" value="Confirm" onClick={Confirm} />
+                    <input type="button" value="Check Availability" onClick={display}/>
+                    <input type="button" value="Confirm"/>
                 </form>
             </div>
         </div>
