@@ -33,7 +33,7 @@ function App() {
         </Route>
         <Route exact path="/hotelhome">
           {user && user._id ? (
-            <Homehotel setLoginUser={setLoginUser} />
+            <Homehotel setLoginUser={setLoginUser} user={user}/>
           ) : (
             <Loginpage setLoginUser={setLoginUser} />
           )}

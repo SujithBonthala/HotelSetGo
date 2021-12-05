@@ -6,7 +6,7 @@ import img2 from './hotelhomeimg1.jpg'
 import img3 from './homehotelimg3.jpg'
 import { useHistory } from "react-router-dom";
 
-function Homehotel({setLoginUser}) {
+function Homehotel({setLoginUser,user}) {
 
   const history = useHistory();
   return (
@@ -27,7 +27,10 @@ function Homehotel({setLoginUser}) {
             <div className="col-md-2 col-sm-12">
               <img className="img-fluid" src={hotellogo} alt="hotel-logo" />
             </div>
-            <div className="col-md-5 col-sm-12">
+            <div className="col-md-3 col-sm-12 displayname">
+              <h2>Welcome {user.name}!!</h2>
+            </div>
+            <div className="col-md-2 col-sm-12">
               <button id="b2" onClick={()=>{setLoginUser({})}}>Sign Out</button>
             </div>
           </div>
@@ -108,16 +111,23 @@ function Homehotel({setLoginUser}) {
                   className="fa fa-facebook-square fa-4x"
                 ></a>
                 <a
-                  href="https://www.google.com"
+                  href="https://www.facebook.com"
                   className="fa fa-google-plus-square fa-4x"
                 ></a>
 
                 <a
-                  href="https://www.google.com"
+                  href="https://www.instagram.com"
                   className="fa fa-instagram fa-4x"
                 ></a>
               </div>
-              <div className="col"></div>
+              <div className="col-lg-3 col-sm-12 info">
+                <div className="row">
+                  <div className="col-md-12 contactinfo">Contact Info:</div>
+                </div>
+                <div className="row">
+                  <div className="col-md-12 number">7259132778</div>
+                </div>
+              </div>
             </div>
           </div>
         </footer>

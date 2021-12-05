@@ -61,14 +61,43 @@
 }
 .social-wrapper a{
     padding: 20px;
-    color: cornsilk;
+    color:black;
 }
 
 .footer{
     
     background-color:cadetblue;
+    opacity: 0.7;
 }
 
 .footerSection{
     margin-top: 10px;
+}
+
+
+.displayname{
+    padding-left: 80px;
+    font-size: 30px;
+    font-weight: bold;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.info
+{
+    padding-top: 35px;
+    padding-left: 100px;
+}
+
+.contactinfo
+{
+    font-size: 30px;
+    color:black;
+    font-weight: bolder;
+}
+
+.number{
+    font-size: 20px;
+    color:black;
+    font-weight: bolder;
+    padding-left: 50px;
 }
