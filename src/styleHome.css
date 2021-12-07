@@ -16,7 +16,7 @@
     background-color: rgb(47, 255, 47);
     border: none;
     border-radius: 5px;
-    margin-left: 8px;
+    margin-left: 15px;
     
 }
 
@@ -34,6 +34,18 @@
     color:black;
     width: 150px;
     float: right;
+    font-weight: bold;
+  }
+
+  .display-4
+  {
+      font-style: oblique;
+        font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  }
+
+  .lead
+  {
+    font-style: oblique;
     font-weight: bold;
   }
 

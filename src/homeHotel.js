@@ -38,8 +38,8 @@ function Homehotel({setLoginUser,user}) {
       </div>
       <div className="SectionLight">
         <div className="jumbotron heading-subheading">
-          <h1 className="display-4">Hello, world!</h1>
-          <p className="lead">Have a nice and wonderful expreriece....</p>
+          <h1 className="display-4">World Class Accomodation!!</h1>
+          <p className="lead">Discover a hotel that defines a new dimension of luxury...</p>
         </div>
         <div className="row">
           <div className="col"></div>

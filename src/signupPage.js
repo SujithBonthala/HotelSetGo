@@ -40,7 +40,7 @@ function Signup() {
 
   return (
     <div className="loginPage">
-      <div className="loginbox">
+      <div className="loginbox2">
         <img src={loginAvatar} alt="avatar" className="avatar2" />
         <h1>Sign Up</h1>
         <form action="login.html">

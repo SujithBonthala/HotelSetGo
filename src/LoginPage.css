@@ -9,8 +9,8 @@
 }
 
 .loginbox {
-  width: 320px;
-  height: 420px;
+  width: 420px;
+  height: 480px;
   background: #000000;
   color: #fff;
   top: 50%;
@@ -73,7 +73,7 @@ input[type="password"] {
 }
 .loginbox a {
   text-decoration: none;
-  font-size: 15px;
+  font-size: 18px;
   line-height: 20px;
   color: darkgrey;
   font-style: bold;

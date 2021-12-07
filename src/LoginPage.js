@@ -4,6 +4,7 @@ import loginAvatar from "./login_avatar.png";
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
 import swal from 'sweetalert';
+import {Link} from 'react-router-dom';
 
 import axios from "axios";
 
@@ -13,7 +14,7 @@ function Loginpage({ setLoginUser }) {
     username: "",
     password: "",
   });
-
+  
   const handleChange = (e) => {
     const { name, value } = e.target;
     setUser({
@@ -54,9 +55,7 @@ function Loginpage({ setLoginUser }) {
           />
           <input type="button" name="login" value="Login" onClick={login} />
           <br />
-          <a href="#">Forgot Password</a>
-          <br />
-          <a href="signupform.html">Create account</a>
+          <Link to="/signuppage">Create account</Link>
           <br />
         </form>
       </div>

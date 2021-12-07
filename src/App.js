@@ -40,14 +40,14 @@ function App() {
         </Route>
         <Route exact path="/lodgingPage">
           {user && user._id ? (
-            <LodgingPage setPayment={setPayment} />
+            <LodgingPage setPayment={setPayment} user={user}/>
           ) : (
             <Loginpage setLoginUser={setLoginUser} />
           )}
         </Route>
         <Route exact path="/hotelseat">
           {user && user._id ? (
-            <Hotelseat setPayment2={setPayment2} />
+            <Hotelseat setPayment2={setPayment2} user={user} />
           ) : (
             <Loginpage setLoginUser={setLoginUser} />
           )}

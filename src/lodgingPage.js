@@ -10,24 +10,24 @@ const options = [
     value: "",
   },
   {
-    label: "King-Sized bedroom",
+    label: "King-Sized bedroom (Rs.5000)",
     value: "king",
   },
   {
-    label: "Queen-Sized bedroom",
+    label: "Queen-Sized bedroom (Rs.3000)",
     value: "queen",
   },
   {
-    label: "Single bedroom",
+    label: "Single bedroom (Rs.1000)",
     value: "single",
   },
   {
-    label: "Double bedroom",
+    label: "Double bedroom (Rs.2000)",
     value: "double",
   },
 ];
 var reserved_rooms = [];
-function LodgingPage({ setPayment }) {
+function LodgingPage({ setPayment,user }) {
   const history = useHistory();
   const [room, setRoom] = useState({
     from: "",
@@ -57,12 +57,17 @@ function LodgingPage({ setPayment }) {
     //alert(to_date);
     //alert(from);
     var date1 = new Date(to);
-    date1.setMonth(date1.getMonth() - 1);
-    var date2 = new Date(to_date);
+    //date1.setMonth(date1.getMonth() - 1);
+    var date1_new=date1.getFullYear()+"-"+date1.getMonth()+"-"+date1.getDate();
+    var date2 = new Date(d);
     var date3 = new Date(from);
-    date3.setMonth(date3.getMonth() - 1);
-    var date4 = new Date(from_date);
-    if (date3 >= date4 && date1 <= date2 && date1>=date3) {
+    var date3_new=date3.getFullYear()+"-"+date3.getMonth()+"-"+date3.getDate();
+    //date3.setMonth(date3.getMonth() - 1);
+    var date4 = new Date(d2);
+    //alert(date1.getTime()+"*"+date2.getTime()+" *"+date3.getTime()+"* "+date4.getTime())
+    var no_days=date1.getTime()-date3.getTime();
+    var no_days_final=no_days/(1000*3600*24)
+    if ((date3.getTime()>=date4.getTime()) && (date1.getTime() <= date2.getTime()) && (date1.getTime()>date3.getTime())) {
       axios
         .post("http://localhost:8000/lodgingPage", room)
         .then((res) => {
@@ -78,9 +83,11 @@ function LodgingPage({ setPayment }) {
               //alert(rooms[index]._id);
               //reserved.from = from;
               //reserved.to = to;
-              reserved_rooms.push({ id: rooms[index]._id, from: from, to: to });
+              reserved_rooms.push({ id: rooms[index]._id, from: from, to: to ,person:user.name,phno:user.phone});
               //alert(reserved_rooms[index].id);
             }
+            price=price*no_days_final;
+            console.log(no_days_final);
             document.getElementById("l8").innerHTML = "Rs." + " " + price;
             setPayment({price:price,num:number,type:roomtype});
             console.log(reserved_rooms);
@@ -194,7 +201,7 @@ function LodgingPage({ setPayment }) {
           <br />
           <br />
           <br />
-          <br />
+          <input type="button" value="Back" id="b1" onClick={()=>{history.push('/hotelhome')}} /><br/>
           <input type="button" value="Search Room" id="b1" onClick={Search} />
           <input
             type="button"

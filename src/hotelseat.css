@@ -1,7 +1,7 @@
 .seatbody {
     margin: 0;
     padding: 0;
-    background-image: url("C:/Users/Samarth Bonthala/Desktop/WebTech Mini_Project/hotel-set-go/src/hotelseat.jpg");
+    background-image: url("hotelseat.jpg");
     background-size: cover;
     background-position: top;
     font-family: sans-serif;
@@ -52,7 +52,7 @@
 
 .box2{
     width: 600px;
-    height: 550px;
+    height: 590px;
     background: #000000;
     color: #fff;
     top: 60%;
@@ -92,7 +92,7 @@
 .box2 input[type="date"]
 {
     border-bottom: 1px solid #fff;
-    width: 25%;
+    width: 30%;
     display: inline;
     margin-right: 100px;
 }
