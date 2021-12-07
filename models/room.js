@@ -9,6 +9,8 @@ const roomSchema = new mongoose.Schema({
     {
       from: String,
       to: String,
+      person:String,
+      phno:String
     },
   ],
 });
@@ -24,11 +26,11 @@ Room.count().then((count) => {
   if (count != 40) {
     for (let index = 1; index < 11; index++) {
       var newRoom = new Room({
-        type: "King-Sized bedroom",
+        type: "King-Sized bedroom (Rs.5000)",
         roomno: index,
         max_occupancy: [{ number: getRndInteger(1, 6) }],
         price: 5000,
-        reserved: [{ from: "1970-01-01", to: "1970-01-02" }],
+        reserved: [{ from: "1970-01-01", to: "1970-01-02",person:" ",phno : " " }],
       });
       newRoom.save((err) => {
         if (err) {
@@ -39,11 +41,11 @@ Room.count().then((count) => {
 
     for (let index = 11; index < 21; index++) {
       var newRoom = new Room({
-        type: "Queen-Sized bedroom",
+        type: "Queen-Sized bedroom (Rs.3000)",
         roomno: index,
         max_occupancy: [{ number: getRndInteger(1, 4) }],
         price: 3000,
-        reserved: [{ from: "1970-01-01", to: "1970-01-02" }],
+        reserved: [{ from: "1970-01-01", to: "1970-01-02",person:" ",phno : " " }],
       });
       newRoom.save((err) => {
         if (err) {
@@ -54,11 +56,11 @@ Room.count().then((count) => {
 
     for (let index = 21; index < 31; index++) {
       var newRoom = new Room({
-        type: "Double bedroom",
+        type: "Double bedroom (Rs.2000)",
         roomno: index,
         max_occupancy: [{ number: getRndInteger(1, 2) }],
         price: 2000,
-        reserved: [{ from: "1970-01-01", to: "1970-01-02" }],
+        reserved: [{ from: "1970-01-01", to: "1970-01-02",person:" ",phno : " " }],
       });
 
       newRoom.save((err) => {
@@ -70,11 +72,11 @@ Room.count().then((count) => {
 
     for (let index = 31; index < 41; index++) {
       var newRoom = new Room({
-        type: "Single bedroom",
+        type: "Single bedroom (Rs.1000)",
         roomno: index,
         max_occupancy: [{ number: 1 }],
         price: 1000,
-        reserved: [{ from: "1970-01-01", to: "1970-01-02" }],
+        reserved: [{ from: "1970-01-01", to: "1970-01-02",person:" ",phno : " " }],
       });
       newRoom.save((err) => {
         if (err) {
