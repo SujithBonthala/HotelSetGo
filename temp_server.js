@@ -73,6 +73,7 @@ app.post("/lodgingPage", function (req, res) {
           $elemMatch: {
             from: { $lte: to.substring(0, 10) },
             to: { $gte: from.substring(0, 10) },
+
           },
         },
       },
@@ -83,7 +84,7 @@ app.post("/lodgingPage", function (req, res) {
           message: error,
         });
       } else {
-        //console.log(rooms);
+        console.log(rooms);
         res.json({
           message: "Room Satisfying Your Condition is found!!",
           room: rooms,
@@ -94,117 +95,102 @@ app.post("/lodgingPage", function (req, res) {
 });
 
 app.put("/lodgingPage", function (req, res) {
-    console.log(req.body);
-    Room.findByIdAndUpdate(
-      req.body.id,
-      {
-        $push: { reserved: { from: req.body.from, to: req.body.to } },
+  console.log(req.body);
+  console.log(req.body.person);
+  console.log(req.body.phno);
+  Room.findByIdAndUpdate(
+    req.body.id,
+    {
+      $push: {
+        reserved: {
+          from: req.body.from,
+          to: req.body.to,
+          person: req.body.person,
+          phno: req.body.phno,
+        },
       },
-      {
-        safe: true,
-        new: true,
-      },
-      function (err, room) {
-        if (err) {
-          res.send({ message: err });
-        } else {
-          console.log(room)
-          res.send({ message: "Room Booked Successfully!!" });
-        }
+    },
+    {
+      safe: true,
+      new: true,
+    },
+    function (err, room) {
+      if (err) {
+        res.send({ message: err });
+      } else {
+        console.log(room);
+        res.send({ message: "Room Booked Successfully!!" });
       }
-    );
+    }
+  );
 });
 
-function hourplus(hour)
-{
-  if(hour=="01")
-  {
+function hourplus(hour) {
+  if (hour == "01") {
     return "02";
-  }
-  else if(hour=="02")
-  {
+  } else if (hour == "02") {
     return "03";
-  }
-  else if(hour=="03")
-  {
+  } else if (hour == "03") {
     return "04";
-  }
-  else if(hour=="07")
-  {
+  } else if (hour == "07") {
     return "08";
-  }
-  else if(hour=="08")
-  {
+  } else if (hour == "08") {
     return "09";
-  }
-  else if(hour=="09")
-  {
+  } else if (hour == "09") {
     return "10";
-  }
-  else if(hour=="10")
-  {
+  } else if (hour == "10") {
     return "11";
   }
 }
 
 app.post("/hotelseat", function (req, res) {
-    const {guests,date,hour,minute,ampm,requests} = req.body;
-    //console.log(req.body);
-    var seater;
-    if(guests<=2 && guests>=1)
+  const { guests, date, hour, minute, ampm, requests } = req.body;
+  //console.log(req.body);
+  var seater;
+  if (guests <= 2 && guests >= 1) {
+    seater = 2;
+  } else if (guests > 2 && guests <= 4) {
+    seater = 4;
+  } else if (guests > 4 && guests <= 6) {
+    seater = 6;
+  }
+  var to;
+  var from = ampm + hour + minute;
+  if (ampm == "AM" && minute == "00") {
+    to = ampm + hour + "30";
+  } else if (ampm == "AM") {
+    to = ampm + hourplus(hour) + "00";
+  } else {
+    to = ampm + hourplus(hour) + minute;
+  }
+  Hotel.findOne(
     {
-      seater=2;
-    }
-    else if(guests>2 && guests<=4)
-    {
-      seater=4;
-    }
-    else if(guests>4 && guests<=6)
-    {
-      seater=6;
-    }
-    var to;
-    var from = ampm + hour + minute;
-    if(ampm=="AM" && minute=="00")
-    {
-      to = ampm + hour + "30";
-    }
-    else if(ampm=="AM")
-    {
-      to = ampm + hourplus(hour) + "00";
-    }
-    else
-    {
-      to = ampm + hourplus(hour) + minute;
-    }
-    Hotel.findOne(
-      {
-        max_occupancy:seater,
-        reserved: {
-          $not: {
-            $elemMatch: {
-              from: { $lte: to },
-              to: { $gte: from },
-            },
+      max_occupancy: seater,
+      reserved: {
+        $not: {
+          $elemMatch: {
+            from: { $lte: to },
+            to: { $gte: from },
           },
         },
       },
-      function (error, seats) {
-        if (error) {
-          res.send({
-            message: error,
-          });
-        } else {
-          console.log(seats)
-          res.json({
-            message: "Table satisfying your condition is found!!",
-            seat: seats,
-            from: from,
-            to: to
-          });
-        }
+    },
+    function (error, seats) {
+      if (error) {
+        res.send({
+          message: error,
+        });
+      } else {
+        console.log(seats);
+        res.json({
+          message: "Table satisfying your condition is found!!",
+          seat: seats,
+          from: from,
+          to: to,
+        });
       }
-    );
+    }
+  );
 });
 
 app.put("/hotelseat", function (req, res) {
@@ -212,7 +198,7 @@ app.put("/hotelseat", function (req, res) {
   Hotel.findByIdAndUpdate(
     req.body.id,
     {
-      $push: { reserved: { from: req.body.from, to: req.body.to } },
+      $push: { reserved: { from: req.body.from, to: req.body.to,person:req.body.person,phno:req.body.phno } },
     },
     {
       safe: true,
@@ -222,7 +208,7 @@ app.put("/hotelseat", function (req, res) {
       if (err) {
         res.send({ message: err });
       } else {
-        console.log(seat)
+        console.log(seat);
         res.send({ message: "Restaurant Table Reserved Successfully!!" });
       }
     }
@@ -230,5 +216,5 @@ app.put("/hotelseat", function (req, res) {
 });
 
 app.listen(8000, function () {
-    console.log("API running on port 8000!!");
+  console.log("API running on port 8000!!");
 });
