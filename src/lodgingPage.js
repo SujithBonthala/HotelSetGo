@@ -27,7 +27,7 @@ const options = [
   },
 ];
 var reserved_rooms = [];
-function LodgingPage({ setPayment,user }) {
+function LodgingPage({ setPayment,user,setReserved }) {
   const history = useHistory();
   const [room, setRoom] = useState({
     from: "",
@@ -67,7 +67,7 @@ function LodgingPage({ setPayment,user }) {
     //alert(date1.getTime()+"*"+date2.getTime()+" *"+date3.getTime()+"* "+date4.getTime())
     var no_days=date1.getTime()-date3.getTime();
     var no_days_final=no_days/(1000*3600*24)
-    if ((date3.getTime()>=date4.getTime()) && (date1.getTime() <= date2.getTime()) && (date1.getTime()>date3.getTime())) {
+    if ((date3.getTime()>=date4.getTime()) && (date1.getTime() <= date2.getTime()) && (date1.getTime()>date3.getTime()) && number>0) {
       axios
         .post("http://localhost:8000/lodgingPage", room)
         .then((res) => {
@@ -89,8 +89,9 @@ function LodgingPage({ setPayment,user }) {
             price=price*no_days_final;
             console.log(no_days_final);
             document.getElementById("l8").innerHTML = "Rs." + " " + price;
-            setPayment({price:price,num:number,type:roomtype});
+            setPayment({price:price,num:number,type:roomtype,max:rooms[0].max_occupancy});
             console.log(reserved_rooms);
+            setReserved(reserved_rooms);
             //setRoom({from:from,to:to,roomtype:roomtype,number:number,id:rooms[0]._id})
           } else {
             swal("No rooms are available!!");
@@ -100,21 +101,14 @@ function LodgingPage({ setPayment,user }) {
           alert(e + "hello");
         });
     } else {
-      swal("Please Enter a Valid check-in/check-out date");
+      swal("Please Enter a valid input data");
     }
   };
 
   const Confirm = () => {
     console.log(reserved_rooms);
     if (reserved_rooms.length>0) {
-      for (let index = 0; index < reserved_rooms.length; index++) {
-        axios
-          .put("http://localhost:8000/lodgingPage", reserved_rooms[index])
-          .then((res) => {
-            swal(res.data.message);
-            //setRoom({ id: "" });
-          });
-      }
+      
       rooms = [];
       reserved_rooms = [];
       history.push("/paymentpage");

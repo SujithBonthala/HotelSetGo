@@ -2,9 +2,11 @@ import loginAvatar from "./login_avatar.png";
 import "./paymentPage.css";
 import { useHistory } from "react-router-dom";
 import swal from "sweetalert";
+import axios from "axios";
 
-function Paymentpage({ obj }) {
+function Paymentpage({ obj,reserved }) {
   const history = useHistory();
+  console.log(obj.max)
   //alert(obj.price)
   return (
     <div className="paymentbody">
@@ -20,6 +22,9 @@ function Paymentpage({ obj }) {
         <ul id="u1">
           <li>
             {obj.num} x {obj.type}
+          </li>
+          <li>
+            Max Occupancy per room:{obj.max}
           </li>
         </ul>
         <br />
@@ -53,6 +58,15 @@ function Paymentpage({ obj }) {
             id="S1"
             onClick={() => {
               if (document.querySelector('input[type="radio"]:checked')) {
+                for (let index = 0; index < reserved.length; index++) {
+                  axios
+                    .put("http://localhost:8000/lodgingPage", reserved[index])
+                    .then((res) => {
+                      swal(res.data.message);
+                      //setRoom({ id: "" });
+                    });
+                }
+
                 swal("Payment Successful!!");
                 history.push("/hotelhome");
               }

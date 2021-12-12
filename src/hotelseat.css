@@ -94,7 +94,7 @@
     border-bottom: 1px solid #fff;
     width: 30%;
     display: inline;
-    margin-right: 100px;
+    margin-right: 50px;
 }
 
 .box2 input[type="time"]
@@ -123,8 +123,9 @@
     color: #000000;
 }
 .box2 #s1 {
-    margin-left: 5px;
+    margin-left: 2px;
     margin-right: 2.5px;
+    width:50px;
 }
 .box2 #s2 {
     margin-left: 2.5px;

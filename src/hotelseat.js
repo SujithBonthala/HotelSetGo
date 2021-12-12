@@ -89,7 +89,7 @@ const options3=[
 ];
 
 
-function Hotelseat({ setPayment2,user}){
+function Hotelseat({ setPayment2,user,set_Reserved_Seat}){
     //var reserved_seats=[];
     
     const history = useHistory();
@@ -157,6 +157,7 @@ function Hotelseat({ setPayment2,user}){
                     seats = res.data.seat;
                     swal(res.data.message);
                     setSeat({ id: seats._id, from: res.data.from, to: res.data.to ,person:user.name,phno:user.phone});
+                    set_Reserved_Seat({ id: seats._id, from: res.data.from, to: res.data.to ,person:user.name,phno:user.phone});
                     price = seats.price*guests;
                     //document.getElementById("l8").innerHTML = "Rs." + " " + price;
                     var seater;
@@ -190,11 +191,6 @@ function Hotelseat({ setPayment2,user}){
     const Confirm = () => {
         console.log(reserved_seats);
         if (reserved_seats) {
-            axios
-            .put("http://localhost:8000/hotelseat", reserved_seats)
-            .then((res) => {
-                swal(res.data.message);
-        });
         seats = [];
         setSeat({id:"",from:"",to:""})
         history.push("/paymentpage2");

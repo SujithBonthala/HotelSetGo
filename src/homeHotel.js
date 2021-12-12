@@ -107,11 +107,11 @@ function Homehotel({setLoginUser,user}) {
             <div className="row">
               <div className="col-lg-9 col-sm-12 social-wrapper">
                 <a
-                  href="https://www.google.com"
+                  href="https://www.facebook.com"
                   className="fa fa-facebook-square fa-4x"
                 ></a>
                 <a
-                  href="https://www.facebook.com"
+                  href="https://www.gmail.com"
                   className="fa fa-google-plus-square fa-4x"
                 ></a>
 

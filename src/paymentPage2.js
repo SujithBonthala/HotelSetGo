@@ -1,9 +1,10 @@
 import loginAvatar from "./login_avatar.png";
 import "./paymentPage.css";
 import { useHistory } from "react-router-dom";
+import axios from "axios";
 import swal from "sweetalert";
 
-function Paymentpage2({ obj }) {
+function Paymentpage2({ obj,seats }) {
   const history = useHistory();
   //alert(obj.price)
   return (
@@ -59,9 +60,17 @@ function Paymentpage2({ obj }) {
             id="S1"
             onClick={() => {
               if (document.querySelector('input[type="radio"]:checked')) {
+                if (seats) {
+                  axios
+                  .put("http://localhost:8000/hotelseat", seats)
+                  .then((res) => {
+                      swal(res.data.message);
+              });
+                
                 swal("Payment Successful!!");
                 history.push("/hotelhome");
               }
+            }
               else{
                   swal("Transaction not successfull..")
                   history.push('/hotelhome')
